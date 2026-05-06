@@ -1,0 +1,13 @@
+# Framework principal
+Django>=5.0,<6.1
+djangorestframework
+django-cors-headers
+
+# Authentification
+djangorestframework-simplejwt
+
+# Gestion des images et Base de données
+pillow
+psycopg2-binary
+
+django-jazzmin
