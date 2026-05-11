@@ -5,11 +5,11 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('hackire_cart');
-    const initialData = [
-      { id: 1, name: "Grand Boubou Basin Riche", price: 65000, category: "Cérémonie", image: "https://images.unsplash.com/photo-1572495631021-26413a69602e?w=800", quantity: 1 },
-      { id: 2, name: "Robe Wax Haute Couture", price: 35000, category: "Soirée", image: "https://images.unsplash.com/photo-1584273010389-9a29633e1443?w=800", quantity: 2 }
-    ];
-    return savedCart && JSON.parse(savedCart).length > 0 ? JSON.parse(savedCart) : initialData;
+    try {
+      return savedCart ? JSON.parse(savedCart) : []; // ✅ Panier vide par défaut
+    } catch (e) {
+      return [];
+    }
   });
 
   useEffect(() => {
@@ -27,6 +27,7 @@ export const CartProvider = ({ children }) => {
   const removeFromCart = (productId) => {
     setCart((prev) => {
       const item = prev.find(i => i.id === productId);
+      if (!item) return prev;
       if (item.quantity > 1) return prev.map(i => i.id === productId ? { ...i, quantity: i.quantity - 1 } : i);
       return prev.filter((i) => i.id !== productId);
     });
@@ -43,4 +44,8 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-export const useCart = () => useContext(CartContext);
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) throw new Error("useCart doit être utilisé à l'intérieur d'un CartProvider");
+  return context;
+};
