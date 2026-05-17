@@ -15,7 +15,7 @@ export default function AddProductModal({ isOpen, onClose, onRefresh }) {
 
     try {
       const token = localStorage.getItem('access_token');
-      await axios.post('http://127.0.0.1:8000/api/products/', data, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/products/`, data, {
         headers: { 
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data' 

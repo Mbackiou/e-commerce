@@ -35,11 +35,12 @@ export default function Login() {
         window.location.reload();
       } else {
         // Inscription
-        const response = await fetch('http://127.0.0.1:8000/api/register/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
-        });
+       // ✅ Utilise la variable d'environnement
+       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/register/`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(formData)
+});
 
         if (response.ok) {
           setIsLogin(true);
