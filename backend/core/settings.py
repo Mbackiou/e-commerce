@@ -58,7 +58,8 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://e-commerce-five-tau-52.vercel.app",
-    "http://localhost:5173", # Port par défaut de Vite (React)
+    "https://e-commerce-git-main-mbackious-projects.vercel.app",  # ← ajoute ça
+    "http://localhost:5173",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
