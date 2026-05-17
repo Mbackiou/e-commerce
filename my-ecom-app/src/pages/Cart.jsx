@@ -39,7 +39,7 @@ ${lignes}
 
 Merci de confirmer ma commande ! 🙏`;
 
-    const lien = `https://wa.me/${"221774579038"}?text=${encodeURIComponent(message)}`;
+    const lien = `https://wa.me/${"221783517319"}?text=${encodeURIComponent(message)}`;
     window.open(lien, '_blank');
   };
 
